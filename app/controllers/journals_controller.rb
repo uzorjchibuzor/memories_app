@@ -1,7 +1,7 @@
 class JournalsController < ApplicationController
 
   def new
-    @journal = current_user.journals.build
+    @journal = Journal.new
   end
 
   def create

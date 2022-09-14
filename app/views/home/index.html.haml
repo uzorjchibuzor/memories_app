@@ -4,8 +4,9 @@
 
 .flex.flex-grid.px-10
   %p.font-bold Journals
-  = link_to "New folder", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3"
+  = link_to "New folder", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3", data: {turbo_frame: dom_id(Journal.new)}
 
+= turbo_frame_tag Journal.new
 
 .journal-list
   %ul 
