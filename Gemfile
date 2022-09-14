@@ -84,3 +84,6 @@ end
 
 gem "hamlit-rails", "~> 0.2.3"
 gem "devise"
+
+gem "simple_form"
+gem "simple_form-tailwind", "~> 0.1.1"
