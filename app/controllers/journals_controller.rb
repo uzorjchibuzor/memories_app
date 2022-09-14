@@ -1,5 +1,7 @@
-class JournalsController < ApplicationController
+# frozen_string_literal: true
 
+# Journals Controller actions are defined here
+class JournalsController < ApplicationController
   def new
     @journal = Journal.new
   end
@@ -26,8 +28,7 @@ class JournalsController < ApplicationController
     redirect_to @journal if @journal.update_attribute(:title, params[:title])
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
