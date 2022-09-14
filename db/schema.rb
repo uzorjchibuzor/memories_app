@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_144459) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_204233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "journal_id", null: false
+    t.date "date"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_id"], name: "index_entries_on_journal_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
 
   create_table "journals", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,5 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_144459) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "entries", "journals"
+  add_foreign_key "entries", "users"
   add_foreign_key "journals", "users"
 end

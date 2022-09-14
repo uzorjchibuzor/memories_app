@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :entry do
+    date { Date.today }
+    body { Faker::Lorem.sentence(word_count: 20) }
+    user 
+    journal 
+  end
+
   factory :journal do
     user
     is_private { true }
