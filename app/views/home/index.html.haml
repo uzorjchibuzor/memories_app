@@ -1,2 +1,12 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.text-center.justify-content-center
+  %h1 Welcome #{current_user.name.capitalize}, to your Memories Dashboard
+  %p Below are your saved memories arranged by folder.
+
+.flex.flex-grid.px-10
+  %p.font-bold Journals
+  = link_to "New folder", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3"
+
+
+.journal-list
+  %ul 
+    = render @user_journals

@@ -9,5 +9,7 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
-    = render "layouts/flash_messages"
-    = yield
+    .flex.flex-col.h-screen
+      = render "layouts/header"
+      = render "layouts/flash_messages"
+      = yield
