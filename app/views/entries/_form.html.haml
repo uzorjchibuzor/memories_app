@@ -1,12 +1,12 @@
-= form_with model: [@journal, @entry] do |f| 
+= form_with model: [@journal, entry] do |f| 
   .form-group.mb-6.max-w-l
     = f.date_field :date, class: 'block w-full text-sm text-slate-500 mb-4 border border-solid'
-    - if @entry.errors.include?(:date)
-      - @entry.errors.full_messages_for(:date).each do |error_message|
+    - if entry.errors.include?(:date)
+      - entry.errors.full_messages_for(:date).each do |error_message|
         .text-xs.text-center.text-red-700= error_message
     = f.text_area :thoughts, placeholder: 'Remember to select a date for this!', class: "my-4 placeholder:italic placeholder:text-slate-400 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-    - if @entry.errors.include?(:thoughts)
-      - @entry.errors.full_messages_for(:thoughts).each do |error_message|
+    - if entry.errors.include?(:thoughts)
+      - entry.errors.full_messages_for(:thoughts).each do |error_message|
         .text-xs.text-center.text-red-700= error_message
-    = f.submit "CREATE ENTRY", class: "px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+    = f.submit "#{object_action} ENTRY", class: "px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
     = link_to "CANCEL", @journal, class: "px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"

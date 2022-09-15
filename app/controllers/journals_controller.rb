@@ -2,6 +2,8 @@
 
 # Journals Controller actions are defined here
 class JournalsController < ApplicationController
+  before_action :set_journal, except: [:new]
+
   def new
     @journal = Journal.new
   end
@@ -13,7 +15,6 @@ class JournalsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Journal was successfully created.' }
         format.turbo_stream { flash.now[:notice] = 'Journal was successfully created.' }
       end
-      
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,16 +31,28 @@ class JournalsController < ApplicationController
   end
 
   def update
-    @journal = Journal.find_by(id: params[:id])
-    redirect_to @journal if @journal.update_attribute(:title, params[:title])
+    return unless @journal.update(journal_params)
+
+    respond_to do |format|
+      format.html { redirect_to @journal, notice: 'Journal was successfully updated.' }
+      format.turbo_stream { flash.now[:notice] = 'Journal was successfully updated.' }
+    end
   end
 
   def destroy
-    Journal.find_by(id: params[:id]).destroy
-    redirect_to root_path
+    @journal.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Journal was successfully destroyed.' }
+      format.turbo_stream { flash.now[:notice] = 'Journal was successfully destroyed.' }
+    end
   end
 
   private
+
+  def set_journal
+    @journal = Journal.find_by(id: params[:id])
+  end
 
   def journal_params
     params.require(:journal).permit(:title, :is_private)
