@@ -1,4 +1,6 @@
-RSpec.describe 'Journals Index', type: :system do
+# frozen_string_literal: true
+
+RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/BlockLength
   context 'when a user is not signed in' do
     it 'redirects the user to the sign in page' do
       visit root_path
@@ -6,7 +8,7 @@ RSpec.describe 'Journals Index', type: :system do
     end
   end
 
-  context 'when a user is signed in' do
+  context 'when a user is signed in' do # rubocop:disable Metrics/BlockLength
     let!(:user) { create(:user) }
     let!(:user_journal) { create(:journal, user:) }
 
@@ -31,7 +33,7 @@ RSpec.describe 'Journals Index', type: :system do
       expect(page).to have_field('journal_title')
 
       fill_in('journal_title', with: 'A New Journal')
-      click_on "CREATE JOURNAL"
+      click_on 'CREATE JOURNAL'
       expect(page).to have_content('A New Journal')
     end
 
@@ -45,7 +47,7 @@ RSpec.describe 'Journals Index', type: :system do
       expect(page).to have_field('journal_title')
 
       fill_in('journal_title', with: '')
-      click_on "CREATE JOURNAL"
+      click_on 'CREATE JOURNAL'
       expect(page).to have_content("Title can't be blank")
     end
   end

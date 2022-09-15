@@ -2,10 +2,8 @@
 
 # All actions regarding the entry object lives here.
 class EntriesController < ApplicationController
-  include EntryHelper
-
   before_action :set_journal
-  before_action :set_entry, only: [:edit, :update, :destroy]
+  before_action :set_entry, only: %i[edit update destroy]
 
   def index; end
 
@@ -18,8 +16,8 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     if @entry.save
       respond_to do |format|
-        format.html { redirect_to @journal, notice: 'Your entry has been saved successfully' }
-        format.turbo_stream { flash.now[:notice] = 'Your entry has been saved successfully' }
+        format.html { redirect_to @journal, notice: 'Your entry has been created successfully' }
+        format.turbo_stream { flash.now[:notice] = 'Your entry has been created successfully' }
       end
     else
       render :new, status: :unprocessable_entity
@@ -29,11 +27,11 @@ class EntriesController < ApplicationController
   def edit; end
 
   def update
-    if @entry.update(entry_params)
-      respond_to do |format|
-        format.html { redirect_to @journal, notice: 'Your entry has been updated successfully' }
-        format.turbo_stream { flash.now[:notice] = 'Your entry has been updated successfully' }
-      end
+    return unless @entry.update(entry_params)
+
+    respond_to do |format|
+      format.html { redirect_to @journal, notice: 'Your entry has been updated successfully' }
+      format.turbo_stream { flash.now[:notice] = 'Your entry has been updated successfully' }
     end
   end
 
@@ -50,6 +48,10 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:thoughts, :date)
+  end
+
+  def set_journal
+    @journal ||= Journal.find(params[:journal_id])
   end
 
   def set_entry

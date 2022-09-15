@@ -10,7 +10,7 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
     = hotwire_livereload_tags if Rails.env.development?
   %body 
-    .flex.flex-col.h-screen
+    .flex.flex-col.h-screen.bg-gradient-to-b.from-blue-200.to-green-200
       = render "layouts/header"
       %div.container
         #flash.flash
