@@ -1,3 +1,4 @@
-.entry-div 
-  %p= entry.date 
-  %p= entry.body 
+- if entry.date 
+  .entry-div.card-it.mb-7
+    %p.italic.entry-date.text-white= entry.date.strftime('%B %d, %Y') 
+    %p= entry.thoughts

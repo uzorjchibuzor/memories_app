@@ -24,6 +24,6 @@ class EntriesController < ApplicationController
   private
 
   def entry_params 
-    params.require(:entry).permit(:body, :date, :journal_id)
+    params.require(:entry).permit(:thoughts, :date)
   end
 end

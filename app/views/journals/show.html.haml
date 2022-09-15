@@ -1,6 +1,12 @@
-.journal-item.text-center
-  %p= @journal.title
-.journal-entries
-  = link_to 'New Entry', new_journal_entry_path(@journal), data: { turbo_frame: dom_id(@entry)}
+.text-center.justify-content-center.container
+  %p.font-bold= @journal.title
+  .header
+    %p.font-bold 
+      = link_to sanitize("&larr; Back to Journals"), root_path
+    = link_to 'New Entry', new_journal_entry_path(@journal), data: { turbo_frame: dom_id(@entry)}, class: "px-3 py-2 bg-green-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
   = turbo_frame_tag dom_id(@entry)
-  = render @journal_entries
+
+  = turbo_stream_from @journal, :entries
+  .entry-lists
+    %ul#entries
+      = render @journal_entries

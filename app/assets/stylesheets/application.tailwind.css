@@ -1,6 +1,38 @@
 @tailwind base;
 @tailwind components;
 
+.card-it {
+  @apply bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.devise-boxes {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.entry-date {
+  background-color: pink;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .flash {
   position: fixed;
   top: 5rem;
@@ -18,11 +50,13 @@
 }
 
 @keyframes appear-then-fade {
-  0%, 100% {
-    opacity:0
+  0%,
+  100% {
+    opacity: 0;
   }
-  5%, 60% {
-    opacity:1
+  5%,
+  60% {
+    opacity: 1;
   }
 }
 

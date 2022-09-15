@@ -20,21 +20,24 @@ class JournalsController < ApplicationController
   end
 
   def edit
-    @journal = current_user.journals.find_by(id: params[:id])
+    @journal = Journal.find_by(id: params[:id])
   end
 
   def show
-    @journal = current_user.journals.find_by(id: params[:id])
+    @journal = Journal.find_by(id: params[:id])
     @journal_entries = @journal.entries
     @entry = @journal.entries.new
   end
 
   def update
-    @journal = current_user.journals.find_by(id: params[:id])
+    @journal = Journal.find_by(id: params[:id])
     redirect_to @journal if @journal.update_attribute(:title, params[:title])
   end
 
-  def destroy; end
+  def destroy
+    Journal.find_by(id: params[:id]).destroy
+    redirect_to root_path
+  end
 
   private
 

@@ -6,19 +6,5 @@ class Journal < ApplicationRecord
 
   validates :title, presence: true, uniqueness: { scope: :user_id }
 
-  after_create_commit :broadcast_to_user 
-
-  private 
-
-  def broadcast_to_user
-    broadcast_prepend_later_to(
-      user,
-      :journals,
-      target: 'journals',
-      partial: 'journals/journal',
-      locals: {
-        journal: self
-      }
-    )
-  end
+  broadcasts_to ->(journal) { [journal.user, :journals] }, inserts_by: :prepend
 end
