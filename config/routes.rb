@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :journals, only: [:new, :create, :edit, :update, :show, :destory]
+  resources :journals do
+    resources :entries
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

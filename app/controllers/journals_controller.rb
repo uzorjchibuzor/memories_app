@@ -7,9 +7,13 @@ class JournalsController < ApplicationController
   end
 
   def create
-    @journal = current_user.journals.create(journal_params)
+    @journal = current_user.journals.build(journal_params)
     if @journal.save
-      redirect_to @journal
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Journal was successfully created.' }
+        format.turbo_stream { flash.now[:notice] = 'Journal was successfully created.' }
+      end
+      
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,6 +25,8 @@ class JournalsController < ApplicationController
 
   def show
     @journal = current_user.journals.find_by(id: params[:id])
+    @journal_entries = @journal.entries
+    @entry = @journal.entries.new
   end
 
   def update

@@ -1,2 +1,6 @@
 .journal-item.text-center
   %p= @journal.title
+.journal-entries
+  = link_to 'New Entry', new_journal_entry_path(@journal), data: { turbo_frame: dom_id(@entry)}
+  = turbo_frame_tag dom_id(@entry)
+  = render @journal_entries

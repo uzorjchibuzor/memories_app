@@ -4,10 +4,11 @@
 
 .flex.flex-grid.px-10
   %p.font-bold Journals
-  = link_to "New Journal", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3", data: {turbo_frame: dom_id(Journal.new)}
+  = link_to "New Journal", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3", data: {turbo_frame: dom_id(@journal)}
 
-= turbo_frame_tag Journal.new
+= turbo_frame_tag dom_id(@journal)
 
+= turbo_stream_from current_user, :journals
 .journal-list
-  %ul 
+  %ul#journals
     = render @user_journals

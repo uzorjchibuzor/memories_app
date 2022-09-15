@@ -8,8 +8,10 @@
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    = hotwire_livereload_tags if Rails.env.development?
   %body
     .flex.flex-col.h-screen
       = render "layouts/header"
-      = render "layouts/flash_messages"
+      #flash.flash
+        = render "layouts/flash_messages"
       = yield
