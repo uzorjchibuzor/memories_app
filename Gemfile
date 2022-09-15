@@ -63,6 +63,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "hotwire-livereload"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -85,5 +86,3 @@ end
 gem "hamlit-rails", "~> 0.2.3"
 gem "devise"
 
-gem "simple_form"
-gem "simple_form-tailwind", "~> 0.1.1"

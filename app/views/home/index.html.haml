@@ -1,13 +1,14 @@
-.text-center.justify-content-center
+.text-center.justify-content-center.container
   %h1 Welcome #{current_user.name}, to your Memories Dashboard
   %p Below are your saved memories arranged by folder.
 
-.flex.flex-grid.px-10
-  %p.font-bold Journals
-  = link_to "New Journal", new_journal_path, class: "text-white bg-blue-500 px-4 mx-3", data: {turbo_frame: dom_id(Journal.new)}
+  .header
+    %p.font-bold My Journals
+    = link_to "New Journal", new_journal_path, class: "px-3 py-2 bg-green-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out", data: {turbo_frame: dom_id(@journal)}
 
-= turbo_frame_tag Journal.new
+  = turbo_frame_tag dom_id(@journal)
 
-.journal-list
-  %ul 
-    = render @user_journals
+  = turbo_stream_from current_user, :journals
+  .journal-list
+    %ul#journals
+      = render @user_journals
