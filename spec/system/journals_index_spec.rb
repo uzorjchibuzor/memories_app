@@ -37,7 +37,7 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
       expect(page).to have_content('A New Journal')
     end
 
-    it "allows the user to edit a quote title" do
+    it 'allows the user to edit a quote title' do
       expect(page).to have_selector(:link_or_button, 'Edit')
 
       click_on 'Edit'
@@ -48,7 +48,7 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
       expect(page).to have_content('Edited Journal For Testing') # The journal model titlecase title attribute on save
     end
 
-    it "allows the user to delete a quote" do
+    it 'allows the user to delete a quote' do
       expect(page).to have_selector(:link_or_button, 'Delete')
 
       accept_confirm do
@@ -57,7 +57,7 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
 
       expect(page).to have_content('Journal was successfully destroyed.')
     end
-    
+
     it 'does not allow a signed in user to save new journal with invalid attributes' do
       expect(page).to have_selector(:link_or_button, 'New Journal')
 

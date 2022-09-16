@@ -39,7 +39,7 @@ RSpec.describe 'Journals show page', type: :system do # rubocop:disable Metrics/
       click_on 'New Entry'
       fill_in 'entry_date', with: Date.yesterday
       fill_in 'entry_thoughts', with: 'This is a new entry created for testing'
-      
+
       click_on 'CREATE ENTRY'
 
       expect(page).to have_content('Your entry has been created successfully')
