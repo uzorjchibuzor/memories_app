@@ -32,9 +32,13 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
       expect(page).to have_selector(:link_or_button, 'CANCEL')
       expect(page).to have_field('journal_title')
 
-      fill_in('journal_title', with: 'A New Journal')
+      fill_in('journal_title', with: 'A created Journal for the purpose of testing.')
       click_on 'CREATE JOURNAL'
-      expect(page).to have_content('A New Journal')
+
+      expect(page).to have_content('Journal was successfully created.')
+
+      # The journal model titleizes the :title attribute on save
+      expect(page).to have_content('A Created Journal For The Purpose Of Testing.')
     end
 
     it 'allows the user to edit a quote title' do
@@ -45,7 +49,9 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
       click_on 'UPDATE JOURNAL'
 
       expect(page).to have_content('Journal was successfully updated.')
-      expect(page).to have_content('Edited Journal For Testing') # The journal model titlecase title attribute on save
+
+      # The journal model titleizes the :title attribute on save
+      expect(page).to have_content('Edited Journal For Testing')
     end
 
     it 'allows the user to delete a quote' do
