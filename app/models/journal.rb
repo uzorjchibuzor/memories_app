@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Journal < ApplicationRecord
-  default_scope { order(updated_at: :desc)}
+  default_scope { order(updated_at: :desc) }
   before_save { |journal| journal.title = journal.title.titleize }
   belongs_to :user
   has_many :entries, dependent: :destroy
