@@ -9,6 +9,8 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
     = hotwire_livereload_tags if Rails.env.development?
+    = stylesheet_link_tag "trix.css"
+    = javascript_include_tag "trix"
   %body 
     .flex.flex-col.h-screen.bg-gradient-to-b.from-blue-200.to-green-200
       = render "layouts/header"
