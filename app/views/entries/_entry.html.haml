@@ -8,4 +8,4 @@
             = link_to 'Edit', [:edit, @journal, entry], data: { turbo_frame: dom_id(entry) }
           .rounded.border.bg-red-400.px-3.py-1.text-xs
             = link_to 'Delete', [@journal, entry], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
-      .max-w-xl.ml-mr-auto.bg-blue-200.p-3.text-justify= entry.thoughts
+      .max-w-xl.ml-mr-auto.bg-blue-200.p-3.text-justify= simple_format entry.thoughts
