@@ -20,7 +20,10 @@ RSpec.describe 'Journals show page', type: :system do # rubocop:disable Metrics/
 
     it 'allows the user to edit their entries' do
       click_on 'Edit'
-      fill_in 'entry_thoughts', with: 'The thoughts have been edited'
+      expect(page).to have_selector(:link_or_button, 'UPDATE ENTRY')  
+      expect(page).to have_selector(:link_or_button, 'CANCEL') 
+      page.execute_script("document.getElementById('entry_thoughts_trix_input_entry_#{user_journal_entry.id}').value = '<div>The thoughts have been edited</div>'")
+
       click_on 'UPDATE ENTRY'
 
       expect(page).to have_content('Your entry has been updated successfully')
@@ -37,9 +40,13 @@ RSpec.describe 'Journals show page', type: :system do # rubocop:disable Metrics/
 
     it 'allows the user to create a new entry' do
       click_on 'New Entry'
-      fill_in 'entry_date', with: Date.yesterday
-      fill_in 'entry_thoughts', with: 'This is a new entry created for testing'
 
+      expect(page).to have_selector(:link_or_button, 'CREATE ENTRY')  
+      expect(page).to have_selector(:link_or_button, 'CANCEL') 
+
+      page.execute_script("document.getElementById('entry_thoughts_trix_input_entry').value = '<div>This is a new entry created for testing</div>'")
+
+      fill_in 'entry_date', with: Date.yesterday
       click_on 'CREATE ENTRY'
 
       expect(page).to have_content('Your entry has been created successfully')
