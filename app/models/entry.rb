@@ -7,7 +7,7 @@ class Entry < ApplicationRecord
   belongs_to :journal
 
   validates :date, presence: true, uniqueness: { scope: :journal_id }
-  validates :thoughts, presence: true, length: { minimum: 10, maximum: 1000 }
+  validates :thoughts, presence: true, length: { minimum: 10}
 
   broadcasts_to ->(entry) { [entry.journal, :entries] }, inserts_by: :prepend
 end

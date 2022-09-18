@@ -1,10 +1,12 @@
 = form_with model: [@journal, entry] do |f| 
   .form-group.mb-6.max-w-l
-    = f.date_field :date, class: 'block text-sm text-slate-500 mb-4 border border-solid'
+    .flex.flex-wrap.max-w-m.text-sm.text-slate-500.mb-4
+      = f.label :date, 'Entry date:', class: 'mr-4'
+      = f.date_field :date
     - if entry.errors.include?(:date)
       - entry.errors.full_messages_for(:date).each do |error_message|
         .text-xs.text-center.text-red-700= error_message
-    = f.rich_text_area :thoughts #, placeholder: 'Remember to select a date for this!', class: "my-4 placeholder:italic placeholder:text-slate-400 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+    = f.rich_text_area :thoughts, placeholder: 'Remember to select a date for this!', class: "my-4 placeholder:italic placeholder:text-slate-400 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
     - if entry.errors.include?(:thoughts)
       - entry.errors.full_messages_for(:thoughts).each do |error_message|
         .text-xs.text-center.text-red-700= error_message

@@ -87,3 +87,5 @@ end
 
 gem 'devise'
 gem 'hamlit-rails', '~> 0.2.3'
+
+gem "dotenv-rails", "~> 2.8"
