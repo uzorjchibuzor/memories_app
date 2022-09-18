@@ -16,6 +16,10 @@
   margin-right: auto;
 }
 
+.hack-height {
+  min-height: 82vh;
+}
+
 .ml-mr-auto {
   margin-left: auto;
   margin-right: auto;

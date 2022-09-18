@@ -12,9 +12,10 @@
     = stylesheet_link_tag "trix.css"
     = javascript_include_tag "trix"
   %body 
-    .flex.flex-col.h-screen.bg-gradient-to-b.from-blue-200.to-green-200
+    .flex.flex-col.bg-gradient-to-b.from-blue-200.to-green-200.hack-height
       = render "layouts/header"
       %div.container
         #flash.flash
           = render "layouts/flash_messages"
         = yield
+    = render "layouts/footer"
