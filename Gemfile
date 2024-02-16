@@ -89,3 +89,5 @@ gem 'devise'
 gem 'hamlit-rails', '~> 0.2.3'
 
 gem "dotenv-rails", "~> 2.8"
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
