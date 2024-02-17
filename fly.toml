@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for memories-app on 2024-02-16T22:33:42+01:00
+# fly.toml app configuration file generated for memories-app on 2024-02-16T22:50:25+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,9 +8,6 @@ primary_region = "ams"
 console_command = "/rails/bin/rails console"
 
 [build]
-
-[deploy]
-  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000

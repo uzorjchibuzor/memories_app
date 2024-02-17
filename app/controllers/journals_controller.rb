@@ -3,13 +3,14 @@
 # Journals Controller actions are defined here
 class JournalsController < ApplicationController
   before_action :set_journal, except: [:new]
+  before_action :authenticate_user!
 
   def new
-    @journal = Journal.new
+    @journal = current_user_journals.new
   end
 
   def create
-    @journal = current_user.journals.build(journal_params)
+    @journal = current_user_journals.build(journal_params)
     if @journal.save
       respond_to do |format|
         format.html { redirect_to root_path, notice: 'Journal was successfully created.' }
@@ -21,12 +22,12 @@ class JournalsController < ApplicationController
   end
 
   def edit
-    @journal = Journal.find_by(id: params[:id])
+    @journal = current_user_journals.find_by(id: params[:id])
   end
 
   def show
     @journal = Journal.find_by(id: params[:id])
-    @journal_entries = @journal.entries
+    @journal_entries = @journal.entries 
     @entry = @journal.entries.new
   end
 
@@ -56,5 +57,9 @@ class JournalsController < ApplicationController
 
   def journal_params
     params.require(:journal).permit(:title, :is_private)
+  end
+
+  def current_user_journals
+    current_user.journals
   end
 end
