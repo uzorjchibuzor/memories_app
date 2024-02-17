@@ -2,7 +2,7 @@
 
 # Journals Controller actions are defined here
 class JournalsController < ApplicationController
-  before_action :set_journal, except: [:new]
+  before_action :set_journal, except: [:new, :create]
   before_action :authenticate_user!
 
   def new
@@ -21,12 +21,11 @@ class JournalsController < ApplicationController
     end
   end
 
-  def edit
-    @journal = current_user_journals.find_by(id: params[:id])
-  end
+  def edit; end
 
   def show
-    @journal = Journal.find_by(id: params[:id])
+    return  redirect_to root_path, notice: 'You are not authorized to access this resource.' if @journal.nil?
+
     @journal_entries = @journal.entries 
     @entry = @journal.entries.new
   end
@@ -52,7 +51,7 @@ class JournalsController < ApplicationController
   private
 
   def set_journal
-    @journal = Journal.find_by(id: params[:id])
+    @journal = current_user_journals.find_by(id: params[:id])
   end
 
   def journal_params
@@ -60,6 +59,6 @@ class JournalsController < ApplicationController
   end
 
   def current_user_journals
-    current_user.journals
+    @journals ||= current_user.journals
   end
 end

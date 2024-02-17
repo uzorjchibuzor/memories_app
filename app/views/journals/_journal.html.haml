@@ -1,13 +1,8 @@
 = turbo_frame_tag dom_id(journal) do
   .flex.flex-wrap.justify-between.card-it.block.p-6.mb-6.max-w-l
     = link_to journal.title, journal, data: { turbo_frame: '_top' } ,class: "hover:underline text-gray-700 dark:text-gray-400"
-    - if journal.user == current_user
-      %div.flex.flex-wrap
-        .rounded.border.bg-neutral-400.px-3.py-1.text-xs
-          = link_to 'Edit', edit_journal_path(journal), data: { turbo_frame: dom_id(journal) }
-        .rounded.border.bg-red-400.px-3.py-1.text-xs
-          = link_to 'Delete', journal, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
-    - else 
-      %div.flex.flex-wrap
-        .rounded.border.bg-neutral-400.px-3.py-1.text-xs
-          %span.flex.flex-wrap This Folder does not belong to you.
+    %div.flex.flex-wrap
+      .rounded.border.bg-neutral-400.px-3.py-1.text-xs
+        = link_to 'Edit', edit_journal_path(journal), data: { turbo_frame: dom_id(journal) }
+      .rounded.border.bg-red-400.px-3.py-1.text-xs
+        = link_to 'Delete', journal, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
