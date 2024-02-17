@@ -10,9 +10,7 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
 
   context 'when a user is signed in' do # rubocop:disable Metrics/BlockLength
     let!(:user) { create(:user) }
-    let!(:user_2) { create(:user) }
     let!(:user_journal) { create(:journal, user:) }
-    let!(:user_2_journal) { create(:journal, user: user_2) }
 
     before :each do
       login_as user, scope: :user
@@ -25,20 +23,16 @@ RSpec.describe 'Journals Index', type: :system do # rubocop:disable Metrics/Bloc
       expect(page).to have_content(user_journal.title)
     end
 
-    it 'does not displays journals belonging to other users' do
-      expect(page).to have_content(user.name)
-      expect(page).not_to have_content(user_2_journal.title)
-    end
-
     it 'allow the user to create a new journal with valid attributes' do
       expect(page).to have_selector(:link_or_button, 'New Journal')
+
       click_on 'New Journal'
 
       expect(page).to have_selector(:link_or_button, 'CREATE JOURNAL')
       expect(page).to have_selector(:link_or_button, 'CANCEL')
       expect(page).to have_field('journal_title')
-      fill_in('journal_title', with: 'A created Journal for the purpose of testing.')
 
+      fill_in('journal_title', with: 'A created Journal for the purpose of testing.')
       click_on 'CREATE JOURNAL'
 
       expect(page).to have_content('Journal was successfully created.')

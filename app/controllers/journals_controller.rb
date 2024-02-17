@@ -26,10 +26,7 @@ class JournalsController < ApplicationController
   end
 
   def show
-    @journal = current_user_journals.find_by(id: params[:id])
-    
-    return redirect_to root_path, notice: 'Journal not found.' if @journal.nil?
-    
+    @journal = Journal.find_by(id: params[:id])
     @journal_entries = @journal.entries 
     @entry = @journal.entries.new
   end

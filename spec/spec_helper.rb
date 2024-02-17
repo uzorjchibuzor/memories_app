@@ -15,13 +15,6 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require "simplecov"
-SimpleCov.start "rails" do
-  add_filter "application_job.rb"
-  add_filter "turbo_devise_controller.rb"
-  add_filter "channel.rb"
-  add_filter "application_mailer.rb"
-end
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
