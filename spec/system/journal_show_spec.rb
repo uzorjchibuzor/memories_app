@@ -38,6 +38,21 @@ RSpec.describe 'Journals show page', type: :system do # rubocop:disable Metrics/
       expect(page).not_to have_content(user_journal_entry.thoughts)
     end
 
+    it 'returns user to back to the new page when invalid parameters are entered' do
+      click_on 'New Entry'
+
+      expect(page).to have_selector(:link_or_button, 'CREATE ENTRY')  
+      expect(page).to have_selector(:link_or_button, 'CANCEL') 
+
+      page.execute_script("document.getElementById('entry_thoughts_trix_input_entry').value = ''")
+
+      fill_in 'entry_date', with: "''"
+      click_on 'CREATE ENTRY'
+
+      expect(page).to have_content('Your entry has been created successfully')
+    end
+
+
     it 'allows the user to create a new entry' do
       click_on 'New Entry'
 

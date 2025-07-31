@@ -7,3 +7,6 @@ import { application } from "./application"
 import FlashRemovalsController from "./flash_removals_controller"
 application.register("flash-removals", FlashRemovalsController)
 
+import ShowPasswordController from "./show_password_controller"
+application.register("show-password", ShowPasswordController)
+

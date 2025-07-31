@@ -11,8 +11,8 @@
       .field
         = f.label :password, class: 'form-label inline-block mb-2 text-gray-700'
         %br/
-        = f.password_field :password, autocomplete: "current-password", class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-
+        = f.password_field :password, autocomplete: "current-password", id:"password-field",class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        %span#show-password{"data-controller"=> "show-password", "data-action" => "click->show-password#show"} Show Password
       - if devise_mapping.rememberable? 
         .field
           = f.check_box :remember_me 
@@ -20,7 +20,7 @@
 
       .actions
         = f.submit "Log in", class: "mb-5 px-3 py-2 bg-green-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
+          
 
 
-
-      = render "devise/shared/links"
+      = render "devise/shared/links"  
