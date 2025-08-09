@@ -1,20 +1,18 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  show(event) {
+    let showPasswordButton = event.srcElement;
+    let inputId = showPasswordButton.previousElementSibling.id;
+    let passwordField = document.getElementById(inputId);
 
-  show() {
-  let showPasswordButton = document.getElementById('show-password');
-  let passwordField = document.getElementById('password-field');
-
-  showPasswordButton.addEventListener("click", function() {
-  console.log('Click')
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text'
-      showPasswordButton.textContent = 'Hide Password'
+    if (passwordField.type === "password") {
+      console.log(passwordField.type);
+      passwordField.type = "text";
+      showPasswordButton.innerHTML = "Hide Password";
     } else {
-     passwordField.type = 'password'
-      showPasswordButton.textContent = 'Show Password'
-   }
-  });
+      passwordField.type = "password";
+      showPasswordButton.innerHTML = "Show Password";
+    }
   }
-  }
+}
