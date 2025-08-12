@@ -77,4 +77,8 @@
   cursor: pointer;
 }
 
+#show-password:hover {
+  color: red;
+}
+
 @tailwind utilities;

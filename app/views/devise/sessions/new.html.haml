@@ -1,4 +1,4 @@
-.ml-mr-auto.max-w-sm
+.ml-mr-auto.max-w-sm{"data-controller"=> "show-password"}
   %h2.text-center.my-5 Log In
 
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
@@ -11,8 +11,8 @@
       .field
         = f.label :password, class: 'form-label inline-block mb-2 text-gray-700'
         %br/
-        = f.password_field :password, autocomplete: "current-password", id:"password-field",class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        %span.text-sm#show-password{"data-controller"=> "show-password", "data-action" => "click->show-password#show"} Show Password
+        = f.password_field :password, autocomplete: "current-password", "data-show-password-target" => "input", class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        %button.text-sm{ type: "button", "aria-pressed" => "false", "data-show-password-target" => "button", "data-action" => "show-password#toggleType" } show
       - if devise_mapping.rememberable? 
         .field
           = f.check_box :remember_me 
