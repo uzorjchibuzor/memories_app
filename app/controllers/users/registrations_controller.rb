@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  
   # def update_resource(resource, params)
   #   if resource.provider == "google_oauth2"
   #     params.delete("current_password")
